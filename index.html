@@ -18,8 +18,8 @@
                     Discord Rich Presence for DOTA 2 and CS:GO
                 </div>
                 <div class="hero-buttons">
-                    <a href="https://github.com/OrangeFlash81/Disintegrate/releases/download/1.7.1/Setup.exe" download>
-                        <button>Download for Windows (1.7.1)</button>
+                    <a href="https://github.com/OrangeFlash81/Disintegrate/releases/latest" download class="download">
+                        <button>Download for Windows</button>
                     </a>
                     <a href="https://github.com/OrangeFlash81/Disintegrate">
                         <button>View source on GitHub</button>
@@ -99,7 +99,7 @@
                     What are you waiting for?
                 </div>
                 <div class="hero-buttons">
-                    <a href="bin/Disintegrate-1.2.0.msi" download>
+                    <a href="https://github.com/OrangeFlash81/Disintegrate/releases/latest" download class="download">
                         <button>Download for Windows</button>
                     </a>
                     <a href="https://github.com/OrangeFlash81/Disintegrate">
@@ -118,5 +118,14 @@
             service used.
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $.getJSON("https://api.github.com/repos/OrangeFlash81/Disintegrate/releases/latest").done(r => {
+            let exe = r.assets
+                .filter(a => a.browser_download_url.endsWith(".exe"))[0];
+            $("a.download").attr("href", exe.browser_download_url);
+        });
+    </script>
 </body>
 </html>
